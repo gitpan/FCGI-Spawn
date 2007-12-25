@@ -2,7 +2,7 @@ package FCGI::Spawn;
 
 use vars qw($VERSION);
 BEGIN {
-  $VERSION = '0.1'; 
+  $VERSION = '0.11'; 
   $FCGI::Spawn::Default = 'FCGI::Spawn';
 }
 
@@ -121,16 +121,17 @@ sub new {
 sub spawn {
 	my $this = shift;
 	my( $request, $proc_manager, $socket ) = map { $this -> {$_} } qw/request proc_manager socket/;
-	my %fcgi_spawn_main = %main:: ;
+	#my %fcgi_spawn_main = %main:: ;
 	while( $request->Accept() >= 0 ) {
  		$proc_manager->pm_pre_dispatch();
 		my $sn = $ENV{SCRIPT_FILENAME};
 		my $dn = dirname $sn;
 		my $bn = basename $sn;
 		chdir $dn;
-		require $sn or print $!.$bn;
+		do $sn or print $!.$bn;
 		delete $INC{ $sn };
-		foreach ( keys %main:: ){ delete $main::{ $_ } unless defined $fcgi_spawn_main{ $_ } };
+ 		$proc_manager->pm_post_dispatch();
+	#	foreach ( keys %main:: ){ delete $main::{ $_ } unless defined $fcgi_spawn_main{ $_ } };
 	}
 	FCGI::CloseSocket( $socket );
 }
