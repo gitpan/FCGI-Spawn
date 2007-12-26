@@ -2,7 +2,7 @@ package FCGI::Spawn;
 
 use vars qw($VERSION);
 BEGIN {
-  $VERSION = '0.11'; 
+  $VERSION = '0.12'; 
   $FCGI::Spawn::Default = 'FCGI::Spawn';
 }
 
@@ -129,8 +129,8 @@ sub spawn {
 		my $bn = basename $sn;
 		chdir $dn;
 		do $sn or print $!.$bn;
-		delete $INC{ $sn };
  		$proc_manager->pm_post_dispatch();
+	#	delete $INC{ $sn };
 	#	foreach ( keys %main:: ){ delete $main::{ $_ } unless defined $fcgi_spawn_main{ $_ } };
 	}
 	FCGI::CloseSocket( $socket );
