@@ -2,15 +2,13 @@ package FCGI::Spawn;
 
 use vars qw($VERSION);
 BEGIN {
-  $VERSION = '0.16.1'; 
+  $VERSION = '0.16'; 
   $FCGI::Spawn::Default = 'FCGI::Spawn';
 }
 
-=pod
-
 =head1 NAME
 
- FCGI::Spawn - FastCGI server for CGI-like applications effective multiprocessing
+ FCGI::Spawn - process manager/application server for FastCGI protocol.
 
 =head1 SYNOPSIS
 
@@ -526,8 +524,7 @@ sub _callout {
 	my $save_zero;
 	if( $self->{ save_zero } ){
 		$save_zero = $0; $0 = $ENV{ SCRIPT_FILENAME }
-			? $ENV{ SCRIPT_FILENAME } : defined( $ENV{ SCRIPT_NAME } )
-				? $ENV{ SCRIPT_NAME } : $0
+			? $ENV{ SCRIPT_FILENAME } : $ENV{ SCRIPT_NAME }
 		;
 	}
 	$self->{callout}->( @_ );
