@@ -1,6 +1,6 @@
 --- #YAML:1.0
 name:               FCGI-Spawn
-version:            0.16.2
+version:            0.16.3
 abstract:           FastCGI server for CGI-like applications multiprocessing
 author:
     - Peter V. Vereshagin (peter@vereshagin.org)
@@ -12,6 +12,8 @@ build_requires:
     ExtUtils::MakeMaker:  0
 requires:
     FCGI::ProcManager:  0
+    Test::Most:         0
+    Test::Strict:       0
 no_index:
     directory:
         - t
