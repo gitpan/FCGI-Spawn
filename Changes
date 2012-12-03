@@ -39,6 +39,8 @@ Revision history for Perl module FCGI::Spawn.
 
 0.16.5 Wed Nov 28 19:49:48 MSK 2012
 
+    - Ticket: 19 (0c755c6f-ea00-4f03-9e8b-dd61a93ea55b)
+
     - Missed FCGI.pm  and Const::Fast from dependencies:
  (http://www.cpantesters.org/cpan/report/f9b413e4-35f9-11e2-a2f1-82091a5d253f)
 
@@ -47,3 +49,14 @@ Revision history for Perl module FCGI::Spawn.
 
     - 'Can't locate Const/Fast.pm in @INC (@INC contains: ... .) at
  t/15-binutils-public.t line 33.
+
+
+0.16.6 Mon Dec  3 12:03:05 MSK 2012
+
+    - Ticket: 23 (060a80c7-c75b-4520-ac49-7520ea6dbcb0)
+
+        - Tests pass with perl-5.8.9:
+
+            - t/10-binutils-private.t
+
+            - t/15-binutils-public.t
